@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelas IX-1 | SMPN 1 Rantau Kopar</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Quicksand untuk kesan kartun/bulat -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Quicksand', 'sans-serif'],
+                    },
+                    colors: {
+                        space: {
+                            dark: '#0b0f19',
+                            light: '#1a233a',
+                            card: '#1e293b',
+                        },
+                        neon: {
+                            blue: '#00f3ff',
+                            purple: '#b026ff',
+                            yellow: '#ffde00',
+                            green: '#00ff66'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 3s infinite',
+                        'spin-slow': 'spin 12s linear infinite',
+                        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-20px) rotate(5deg)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 15px rgba(0, 243, 255, 0.4)' },
+                            '50%': { boxShadow: '0 0 30px rgba(0, 243, 255, 0.8)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0b0f19;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        /* Latar Belakang Bintang */
+        .bg-stars {
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 40px 70px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 50px 160px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 130px 80px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 160px 120px, #ffffff, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            animation: twinkle 4s infinite alternate;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+        
+        /* Glass/Neon Card Effect */
+        .space-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(0, 243, 255, 0.2);
+            border-radius: 24px;
+            transition: all 0.3s ease;
+        }
+        .space-card:hover {
+            border-color: rgba(0, 243, 255, 0.8);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 30px -10px rgba(0, 243, 255, 0.4);
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0f19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #b026ff;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f3ff;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased bg-stars relative">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-space-dark/80 backdrop-blur-md border-b border-white/10" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <div class="w-12 h-12 bg-gradient-to-tr from-neon-purple to-neon-blue rounded-full flex items-center justify-center text-2xl shadow-[0_0_15px_rgba(0,243,255,0.5)] group-hover:animate-pulse-glow">
+                        🚀
+                    </div>
+                    <a href="#" class="font-bold text-xl md:text-2xl text-white tracking-wider">KELAS <span class="text-neon-blue">IX-1</span></a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-6 items-center">
+                    <a href="#beranda" class="text-gray-300 hover:text-neon-blue font-bold transition duration-300">Pangkalan</a>
+                    <a href="#profil" class="text-gray-300 hover:text-neon-purple font-bold transition duration-300">Misi Kita</a>
+                    <a href="#pengurus" class="text-gray-300 hover:text-neon-yellow font-bold transition duration-300">Awak Kapal</a>
+                    <a href="#jadwal" class="text-gray-300 hover:text-neon-green font-bold transition duration-300">Orbit</a>
+                    <a href="#galeri" class="text-gray-300 hover:text-pink-400 font-bold transition duration-300">Memori</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-neon-blue hover:text-white focus:outline-none p-2">
+                        <i class="fas fa-bars text-3xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-space-light/95 backdrop-blur-xl border-b border-neon-blue/30 absolute w-full shadow-[0_10px_20px_rgba(0,0,0,0.5)]">
+            <div class="px-4 pt-2 pb-6 space-y-2 text-center">
+                <a href="#beranda" class="block px-3 py-3 text-lg font-bold text-gray-200 hover:text-neon-blue hover:bg-white/5 rounded-xl mobile-link">🚀 Pangkalan</a>
+                <a href="#profil" class="block px-3 py-3 text-lg font-bold text-gray-200 hover:text-neon-purple hover:bg-white/5 rounded-xl mobile-link">🌍 Misi Kita</a>
+                <a href="#pengurus" class="block px-3 py-3 text-lg font-bold text-gray-200 hover:text-neon-yellow hover:bg-white/5 rounded-xl mobile-link">👨‍🚀 Awak Kapal</a>
+                <a href="#jadwal" class="block px-3 py-3 text-lg font-bold text-gray-200 hover:text-neon-green hover:bg-white/5 rounded-xl mobile-link">📅 Jadwal Orbit</a>
+                <a href="#galeri" class="block px-3 py-3 text-lg font-bold text-gray-200 hover:text-pink-400 hover:bg-white/5 rounded-xl mobile-link">📸 Memori</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="relative pt-32 pb-20 md:pt-40 md:pb-32 lg:pt-48 lg:pb-40 overflow-hidden min-h-screen flex items-center">
+        <!-- Dekorasi Mengambang -->
+        <div class="absolute top-32 left-10 text-6xl md:text-7xl animate-float opacity-80 z-0">🛸</div>
+        <div class="absolute top-40 right-10 md:right-32 text-6xl md:text-8xl animate-float-delayed opacity-80 z-0">🪐</div>
+        <div class="absolute bottom-20 left-20 text-4xl animate-float opacity-60 z-0">☄️</div>
+        <div class="absolute bottom-40 right-20 text-5xl animate-float-delayed opacity-80 z-0">🌟</div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <!-- Teks -->
+                <div class="lg:w-1/2 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 py-2 px-4 rounded-full bg-space-light border border-neon-purple text-neon-purple font-bold text-sm mb-6 shadow-[0_0_10px_rgba(176,38,255,0.3)]">
+                        <span class="animate-pulse">🔴</span> Sistem Online
+                    </div>
+                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight mb-4">
+                        Welcome To, <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple">Kelas IX-1!</span>
+                    </h1>
+                    <h2 class="text-2xl md:text-3xl font-bold text-neon-yellow mb-6">
+                        SMPN 1 RANTAU KOPAR
+                    </h2>
+                    <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-lg mx-auto lg:mx-0">
+                        "Siap meluncur menuju masa depan cerah! Bersama kita mengarungi luasnya ilmu pengetahuan dengan penuh semangat dan canda tawa."
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                        <a href="#jadwal" class="px-8 py-4 rounded-full font-bold text-space-dark bg-neon-blue hover:bg-white transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(0,243,255,0.4)] flex items-center justify-center gap-2">
+                            Mulai Penjelajahan 🚀
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Karakter Astronot -->
+                <div class="lg:w-1/2 flex justify-center relative">
+                    <!-- Lingkaran Cahaya -->
+                    <div class="absolute inset-0 bg-gradient-to-tr from-neon-purple/30 to-neon-blue/30 rounded-full blur-[80px] z-0 animate-pulse"></div>
+                    <!-- Gambar Astronot (Menggunakan emoji besar/SVG kartun) -->
+                    <div class="relative z-10 text-[200px] md:text-[250px] animate-float drop-shadow-[0_20px_30px_rgba(0,243,255,0.3)]">
+                        🧑‍🚀
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profil Section -->
+    <section id="profil" class="py-20 relative border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-neon-purple font-bold tracking-widest uppercase flex items-center justify-center gap-2">
+                    <i class="fas fa-satellite"></i> Transmisi Data
+                </h2>
+                <p class="mt-2 text-4xl font-extrabold text-white">Misi & Visi Kelas</p>
+                <div class="w-24 h-1 bg-gradient-to-r from-neon-purple to-neon-blue mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2 w-full">
+                    <div class="space-card p-2 relative group overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-neon-blue/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <!-- Foto Kelas Cartoony -->
+                        <img class="rounded-xl w-full object-cover h-80 md:h-96 relative z-10" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Pemandangan Luar Angkasa">
+                        
+                        <!-- Badge -->
+                        <div class="absolute -bottom-6 -right-6 md:-right-6 bg-space-dark p-4 rounded-3xl border-2 border-neon-blue shadow-[0_0_20px_rgba(0,243,255,0.3)] flex items-center gap-4 z-20 animate-float-delayed">
+                            <div class="text-4xl">👤</div></div>
+                            <div>
+                                <p class="text-sm text-neon-blue font-bold">Total Kru</p>
+                                <p class="text-3xl font-extrabold text-white">30</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 space-y-6">
+                    <h3 class="text-3xl font-bold text-white flex items-center gap-3">
+                        Satu Kapal, Satu Tujuan 🌌
+                    </h3>
+                    <p class="text-lg text-gray-300 leading-relaxed bg-space-light/50 p-6 rounded-2xl border border-white/5">
+                        Kelas IX-1 bagaikan sebuah pesawat luar angkasa yang sedang mengarungi galaksi pengetahuan. Di sini, kami belajar, bermain, dan memecahkan misteri alam semesta (dan PR Matematika) bersama-sama!
+                    </p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
+                        <div class="space-card p-6 relative overflow-hidden">
+                            <div class="absolute top-0 right-0 p-4 opacity-10 text-6xl">🎯</div>
+                            <h4 class="font-bold text-neon-yellow text-xl mb-2 flex items-center gap-2"><i class="fas fa-crosshairs"></i> Visi</h4>
+                            <p class="text-sm text-gray-300">Menjadi penjelajah ilmu terbaik di SMPN 1 Rantau Kopar yang cerdas dan berbudi luhur.</p>
+                        </div>
+                        <div class="space-card p-6 relative overflow-hidden">
+                            <div class="absolute top-0 right-0 p-4 opacity-10 text-6xl">🌠</div>
+                            <h4 class="font-bold text-neon-green text-xl mb-2 flex items-center gap-2"><i class="fas fa-meteor"></i> Misi</h4>
+                            <p class="text-sm text-gray-300">Menjaga persahabatan antar kru, pantang menyerah saat ujian, dan selalu bersenang-senang!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pengurus Kelas Section -->
+    <section id="pengurus" class="py-20 relative">
+        <!-- Hiasan latar -->
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-space-light/30 to-transparent z-0"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-neon-yellow font-bold tracking-widest uppercase flex items-center justify-center gap-2">
+                    <i class="fas fa-id-badge"></i> Daftar Personel
+                </h2>
+                <p class="mt-2 text-4xl font-extrabold text-white">Awak Kapal Inti</p>
+                <div class="w-24 h-1 bg-neon-yellow mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Kapten / Wali Kelas -->
+            <div class="flex justify-center mb-16">
+                <div class="space-card p-8 w-full max-w-md text-center relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-neon-blue to-neon-purple"></div>
+                    <!-- Avatar Kartun -->
+                    <div class="w-32 h-32 mx-auto rounded-full bg-space-dark border-4 border-neon-blue p-2 mb-4 relative group-hover:scale-110 transition-transform duration-300">
+                        <img class="w-full h-full rounded-full object-cover" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Guru&backgroundColor=b6e3f4" alt="Kapten">
+                        <div class="absolute -bottom-2 -right-2 text-3xl">👨‍🏫</div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mt-4">Deni Yusmalia S.Si</h3>
+                    <p class="text-neon-blue font-bold tracking-widest uppercase mt-2 text-sm bg-neon-blue/10 inline-block px-4 py-1 rounded-full border border-neon-blue/30">Kapten Kapal (Wali Kelas)</p>
+                    <p class="text-gray-400 mt-4 italic">"Pastikan sabuk pengaman terpasang, kita akan meluncur ke materi selanjutnya!"</p>
+                </div>
+            </div>
+
+            <!-- Kru Pengurus -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Ketua Kelas -->
+                <div class="space-card p-6 text-center hover:border-neon-yellow transition-colors group">
+                    <div class="w-24 h-24 mx-auto rounded-full bg-space-dark border-2 border-neon-yellow p-1 mb-4 group-hover:animate-bounce">
+                        <img class="w-full h-full rounded-full" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Ketua&backgroundColor=ffdfbf" alt="Co-Pilot">
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Zikri Utama</h3>
+                    <p class="text-neon-yellow font-bold text-sm mt-2"><i class="fas fa-star"></i> Co-Pilot (Ketua)</p>
+                </div>
+
+                <!-- Wakil Ketua -->
+                <div class="space-card p-6 text-center hover:border-neon-green transition-colors group">
+                    <div class="w-24 h-24 mx-auto rounded-full bg-space-dark border-2 border-neon-green p-1 mb-4 group-hover:animate-bounce">
+                        <img class="w-full h-full rounded-full" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Wakil&backgroundColor=c0aede" alt="Navigator">
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Vito Prananda</h3>
+                    <p class="text-neon-green font-bold text-sm mt-2"><i class="fas fa-map"></i> Navigator (Wakil)</p>
+                </div>
+
+                <!-- Sekretaris -->
+                <div class="space-card p-6 text-center hover:border-pink-400 transition-colors group">
+                    <div class="w-24 h-24 mx-auto rounded-full bg-space-dark border-2 border-pink-400 p-1 mb-4 group-hover:animate-bounce">
+                        <img class="w-full h-full rounded-full" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sekretaris&backgroundColor=d1d4f9" alt="Komunikator">
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Tiffany Khairunnisa</h3>
+                    <p class="text-pink-400 font-bold text-sm mt-2"><i class="fas fa-book"></i> Pencatat Log (Sekretaris)</p>
+                </div>
+  
+                <!-- Sekretaris 2 -->
+                <div class="space-card p-6 text-center hover:border-pink-400 transition-colors group">
+                    <div class="w-24 h-24 mx-auto rounded-full bg-space-dark border-2 border-pink-400 p-1 mb-4 group-hover:animate-bounce">
+                        <img class="w-full h-full rounded-full" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sekretaris&backgroundColor=d1d4f9" alt="Komunikator">
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Hafizah Risti Fadillah</h3>
+                    <p class="text-pink-400 font-bold text-sm mt-2"><i class="fas fa-book"></i> Pencatat Log2 (Sekretaris2)</p>
+                </div>
+
+                <!-- Bendahara -->
+                <div class="space-card p-6 text-center hover:border-neon-blue transition-colors group">
+                    <div class="w-24 h-24 mx-auto rounded-full bg-space-dark border-2 border-neon-blue p-1 mb-4 group-hover:animate-bounce">
+                        <img class="w-full h-full rounded-full" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Bendahara&backgroundColor=b6e3f4" alt="Bendahara">
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Putri Ramadhani</h3>
+                    <p class="text-neon-blue font-bold text-sm mt-2"><i class="fas fa-coins"></i> Bendahara Ruang Angkasa</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Jadwal Orbit -->
+    <section id="orbit" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold">Radar <span class="text-green-400">Jadwal Orbit</span></h2>
+                <p class="text-gray-500 mt-2">Jangan sampai ketinggalan jadwal peluncuran mata pelajaran!</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <!-- Senin -->
+                <div class="glass-panel rounded-2xl p-5 border border-white/5">
+                    <h3 class="text-galaxy-neon font-bold mb-4 flex items-center gap-2">
+                        <i class="fas fa-meteor"></i> SENIN
+                    </h3>
+                    <ul class="text-sm space-y-3">
+                        <li class="bg-white/5 p-2 rounded-lg">Upacara Bendera</li>
+                        <li class="bg-white/5 p-2 rounded-lg">Matematika</li>
+                        <li class="bg-white/5 p-2 rounded-lg">B. Indonesia</li>
+                    </ul>
+                </div>
+                <!-- Selasa -->
+                <div class="glass-panel rounded-2xl p-5 border border-white/5">
+                    <h3 class="text-galaxy-purple font-bold mb-4 flex items-center gap-2">
+                        <i class="fas fa-moon"></i> SELASA
+                    </h3>
+                    <ul class="text-sm space-y-3">
+                        <li class="bg-white/5 p-2 rounded-lg">B. Inggris</li>
+                        <li class="bg-white/5 p-2 rounded-lg">IPA</li>
+                        <li class="bg-white/5 p-2 rounded-lg">IPS</li>
+                    </ul>
+                </div>
+                   <!-- Rabu -->
+                <div class="glass-panel rounded-2xl p-5 border border-white/5">
+                    <h3 class="text-galaxy-yellow font-bold mb-4 flex items-center gap-2">
+                        <i class="fas fa-sun"></i> RABU
+                    </h3>
+                    <ul class="text-sm space-y-3">
+                        <li class="bg-white/5 p-2 rounded-lg">Olahraga</li>
+                        <li class="bg-white/5 p-2 rounded-lg">Seni Budaya</li>
+                        <li class="bg-white/5 p-2 rounded-lg">PKN</li>
+                    </ul>
+                </div>
+                <!-- Kamis -->
+                <div class="glass-panel rounded-2xl p-5 border border-white/5">
+                    <h3 class="text-gree-400 font-bold mb-4 flex items-center gap-2">
+                        <i class="fas fa-satellite"></i> KAMIS
+                    </h3>
+                    <ul class="text-sm space-y-3">
+                        <li class="bg-white/5 p-2 rounded-lg">Agama</li>
+                        <li class="bg-white/5 p-2 rounded-lg">IPA</li>
+                        <li class="bg-white/5 p-2 rounded-lg">TIK</li>
+                    </ul>
+                </div>
+                <!-- Jumat -->
+                <div class="glass-panel rounded-2xl p-5 border border-white/5">
+                    <h3 class="text-re-400 font-bold mb-4 flex items-center gap-2">
+                        <i class="fas fa-star"></i> JUMAT
+                    </h3>
+                    <ul class="text-sm space-y-3">
+                        <li class="bg-white/5 p-2 rounded-lg">Rohis/Senam</li>
+                        <li class="bg-white/5 p-2 rounded-lg">B. Indonesia</li>
+                        <li class="bg-white/5 p-2 rounded-lg">Prakarya</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5 text-center">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-4xl mb-4">🛸</div>
+            <p class="font-bold text-gray-400 tracking-widest text-sm mb-2">GALAKSI IX-1 SMPN 1 RANTAU KOPAR</p>
+            <p class="text-xs text-gray-600">Copyright &copy; 2026. Misi Menuju Masa Depan.</p>
+           <p class="text-xs text-gray-600">This Web Deployed By Daffa&trade;</p>
+        </div>
+    </footer>
+
+    <script>
+        // Generate Bintang Random
+        const starsBox = document.getElementById('stars-box');
+        const count = 150;
+        
+        for (let i = 0; i < count; i++) {
+            const star = document.createElement('div');
+            star.className = 'star animate-twinkle';
+            
+            const size = Math.random() * 3 + 'px';
+            star.style.width = size;
+            star.style.height = size;
+            
+            star.style.top = Math.random() * 100 + '%';
+            star.style.left = Math.random() * 100 + '%';
+            
+            star.style.animationDelay = Math.random() * 5 + 's';
+            star.style.opacity = Math.random();
+            
+            starsBox.appendChild(star);
+        }
+
+        // Toggle Menu Mobile
+        function toggleMenu() {
+            const nav = document.getElementById('mobile-nav');
+            nav.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
